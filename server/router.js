@@ -23,20 +23,19 @@ const router = (app) => {
     // whenever someone goes to the site without a path (AKA the home page), call controllers.index
     // For example www.webpage.com
   app.get('/', controllers.index);
-  
+
     // catch for any other GET request. The * means anything
   app.get('/*', controllers.notFound);
-  
+
     // When someone POSTS to /setName, call controllers.setName
     // For example, a form submission to www.webpage.com/setName
   app.post('/setName', controllers.setName);
 
     // When someone POSTS to /updateLast, call controllers.updateLast
   app.post('/updateLast', controllers.updateLast);
-    
-    
+
+
   app.post('/setNameDog', controllers.setNameDog);
-  
 };
 
 // export the router function
