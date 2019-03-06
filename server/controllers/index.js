@@ -260,7 +260,9 @@ const findDog = (req, res) => {
     savePromise.catch(err2 => res.json({ err2 }));
 
     // if a match, send the match back
-    return savePromise;
+    return res.json({ name: lastAddedDog.name,
+      breed: lastAddedDog.breed,
+      age: lastAddedDog.age });
   });
 };
 
