@@ -47,6 +47,16 @@ const readAllCats = (req, res, callback) => {
   Cat.find(callback);
 };
 
+const readAllDogs = (req, res, callback) => {
+  // Call the model's built in find function and provide it a
+  // callback to run when the query is complete
+  // Find has several versions
+  // one parameter is just the callback
+  // two parameters is JSON of search criteria and callback.
+  // That limits your search to only things that match the criteria
+  // The find function returns an array of matching objects
+  Dog.find(callback);
+};
 
 // function to find a specific cat on request.
 // Express functions always receive the request and the response.
@@ -115,6 +125,20 @@ const hostPage3 = (req, res) => {
     // into the jade to be used as variables with #{varName}
   res.render('page3');
 };
+
+const hostPage4 = (req, res) =>{
+    const callback = (err, docs) => {
+      if (err) {
+            return res.json({ err }); // if error, return it
+          }
+      
+          // return success
+          return res.render('page4', { dogs: docs });
+      };
+      
+      readAllDogs(req, res, callback);
+};
+
 
 // function to handle get request to send the name
 // controller functions in Express receive the full HTTP request
@@ -327,6 +351,7 @@ module.exports = {
   page1: hostPage1,
   page2: hostPage2,
   page3: hostPage3,
+  page4: hostPage4,
   readCat,
   getName,
   setName,
